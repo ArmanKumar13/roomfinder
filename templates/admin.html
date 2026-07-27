@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <h2>
+        Welcome, {{ session.fullname }}
+    </h2>
+
+    <p class="text-muted">
+        Admin Dashboard
+    </p>
+
+    <hr>
+
+    <!-- Statistics -->
+
+    <div class="row mb-4">
+
+        <div class="col-md-4 mb-3">
+            <div class="card shadow text-center h-100">
+                <div class="card-body">
+                    <h5>Total Users</h5>
+                    <h2 class="text-primary">
+                        {{ total_users }}
+                    </h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="card shadow text-center h-100">
+                <div class="card-body">
+                    <h5>Total Owners</h5>
+                    <h2 class="text-success">
+                        {{ total_owners }}
+                    </h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="card shadow text-center h-100">
+                <div class="card-body">
+                    <h5>Total Tenants</h5>
+                    <h2 class="text-info">
+                        {{ total_tenants }}
+                    </h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="card shadow text-center h-100">
+                <div class="card-body">
+                    <h5>Total Rooms</h5>
+                    <h2 class="text-primary">
+                        {{ total_rooms }}
+                    </h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="card shadow text-center h-100">
+                <div class="card-body">
+                    <h5>Available Rooms</h5>
+                    <h2 class="text-success">
+                        {{ available_rooms }}
+                    </h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="card shadow text-center h-100">
+                <div class="card-body">
+                    <h5>Rented Rooms</h5>
+                    <h2 class="text-danger">
+                        {{ rented_rooms }}
+                    </h2>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Admin Menu -->
+
+    <div class="card shadow">
+
+        <div class="card-body">
+
+            <h4>Admin Menu</h4>
+
+            <hr>
+
+            <a href="/admin/users"
+               class="btn btn-primary me-2">
+                Manage Users
+            </a>
+
+            <a href="/admin/rooms"
+               class="btn btn-success me-2">
+                Manage Rooms
+            </a>
+
+            <a href="/logout"
+               class="btn btn-danger">
+                Logout
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

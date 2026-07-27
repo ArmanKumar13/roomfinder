@@ -1,0 +1,14 @@
+body{
+    background:#f5f5f5;
+}
+
+h1,h2{
+    font-weight:bold;
+}
+
+.navbar-brand{
+    font-size:25px;
+}
+.min-vh-75 {
+    min-height: 75vh;
+}

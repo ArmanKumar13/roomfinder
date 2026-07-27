@@ -1,0 +1,231 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container py-4">
+
+    <!-- Page Header -->
+
+    <div class="text-center mb-4">
+
+        <div class="mb-3">
+            <i class="bi bi-pencil-square text-warning"
+               style="font-size: 3rem;">
+            </i>
+        </div>
+
+        <h2 class="fw-bold">
+            Edit Room
+        </h2>
+
+        <p class="text-muted">
+            Update your room listing details.
+        </p>
+
+    </div>
+
+
+    <!-- Edit Form -->
+
+    <div class="card border-0 shadow rounded-4">
+
+        <div class="card-body p-4 p-md-5">
+
+            <form method="POST" enctype="multipart/form-data">
+
+                <!-- Basic Information -->
+
+                <h5 class="fw-bold mb-3">
+                    <i class="bi bi-house-door me-2"></i>
+                    Basic Information
+                </h5>
+
+                <div class="row g-3 mb-4">
+
+                    <div class="col-12">
+
+                        <label class="form-label fw-semibold">
+                            Room Title
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control form-control-lg"
+                            name="title"
+                            value="{{ room.title }}"
+                            required>
+
+                    </div>
+
+
+                    <div class="col-md-6">
+
+                        <label class="form-label fw-semibold">
+                            Monthly Rent
+                        </label>
+
+                        <div class="input-group input-group-lg">
+
+                            <span class="input-group-text">₹</span>
+
+                            <input
+                                type="number"
+                                class="form-control"
+                                name="rent"
+                                value="{{ room.rent }}"
+                                min="0"
+                                required>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-6">
+
+                        <label class="form-label fw-semibold">
+                            Security Deposit
+                        </label>
+
+                        <div class="input-group input-group-lg">
+
+                            <span class="input-group-text">₹</span>
+
+                            <input
+                                type="number"
+                                class="form-control"
+                                name="deposit"
+                                value="{{ room.deposit }}"
+                                min="0">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <hr class="my-4">
+
+
+                <!-- Location -->
+
+                <h5 class="fw-bold mb-3">
+                    <i class="bi bi-geo-alt me-2"></i>
+                    Location
+                </h5>
+
+                <div class="row g-3 mb-4">
+
+                    <div class="col-md-6">
+
+                        <label class="form-label fw-semibold">
+                            City
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control form-control-lg"
+                            name="city"
+                            value="{{ room.city }}"
+                            required>
+
+                    </div>
+
+
+                    <div class="col-12">
+
+                        <label class="form-label fw-semibold">
+                            Address
+                        </label>
+
+                        <textarea
+                            class="form-control"
+                            name="address"
+                            rows="3"
+                            required>{{ room.address }}</textarea>
+
+                    </div>
+
+                </div>
+
+
+                <hr class="my-4">
+
+
+                <!-- Description -->
+
+                <h5 class="fw-bold mb-3">
+                    <i class="bi bi-card-text me-2"></i>
+                    Description
+                </h5>
+
+                <div class="mb-4">
+
+                    <textarea
+                        class="form-control"
+                        name="description"
+                        rows="5"
+                        placeholder="Describe the room...">{{ room.description }}</textarea>
+
+                </div>
+
+<hr class="my-4">
+
+<h5 class="fw-bold mb-3">
+    <i class="bi bi-image me-2"></i>
+    Update Room Images
+</h5>
+
+<div class="mb-4">
+
+    <label class="form-label fw-semibold">
+        Upload New Images (Optional)
+    </label>
+
+    <input
+        type="file"
+        class="form-control"
+        name="images"
+        multiple
+        accept=".jpg,.jpeg,.png,.webp">
+
+    <small class="text-muted">
+        Leave empty if you don't want to change images.
+    </small>
+
+</div>
+                <!-- Buttons -->
+
+                <div class="d-flex flex-wrap gap-2">
+
+                    <button
+                        type="submit"
+                        class="btn btn-success btn-lg px-4">
+
+                        <i class="bi bi-check-circle me-2"></i>
+                        Update Room
+
+                    </button>
+
+
+                    <a
+                        href="/my-rooms"
+                        class="btn btn-outline-secondary btn-lg px-4">
+
+                        <i class="bi bi-x-circle me-2"></i>
+                        Cancel
+
+                    </a>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

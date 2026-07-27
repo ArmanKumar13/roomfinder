@@ -1,0 +1,269 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container py-4">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-7 col-lg-6">
+
+            <!-- Header -->
+
+            <div class="text-center mb-4">
+
+                <div class="mb-3">
+                    <i class="bi bi-person-plus-fill text-success"
+                       style="font-size: 3rem;">
+                    </i>
+                </div>
+
+                <h2 class="fw-bold">
+                    Create Your Account
+                </h2>
+
+                <p class="text-muted">
+                    Join RoomFinder and start finding or listing rooms.
+                </p>
+
+            </div>
+
+
+            <!-- Registration Card -->
+
+            <div class="card border-0 shadow rounded-4">
+
+                <div class="card-body p-4 p-md-5">
+
+                    <form action="/register" method="POST">
+
+                        <!-- Full Name -->
+
+                        <div class="mb-3">
+
+                            <label class="form-label fw-semibold">
+                                <i class="bi bi-person me-1"></i>
+                                Full Name
+                            </label>
+
+                            <input
+                                type="text"
+                                name="fullname"
+                                class="form-control form-control-lg"
+                                placeholder="Enter your full name"
+                                value="{{ form.fullname if form else '' }}"
+                                autocomplete="name"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- Email -->
+
+                        <div class="mb-3">
+
+                            <label class="form-label fw-semibold">
+                                <i class="bi bi-envelope me-1"></i>
+                                Email Address
+                            </label>
+
+                            <input
+                                type="email"
+                                name="email"
+                                class="form-control form-control-lg"
+                                placeholder="Enter your email"
+                                value="{{ form.email if form else '' }}"
+                                autocomplete="email"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- Phone -->
+
+                        <div class="mb-3">
+
+                            <label class="form-label fw-semibold">
+                                <i class="bi bi-telephone me-1"></i>
+                                Phone Number
+                            </label>
+
+                            <input
+                                type="tel"
+                                name="phone"
+                                class="form-control form-control-lg"
+                                placeholder="Enter 10-digit phone number"
+                                value="{{ form.phone if form else '' }}"
+                                maxlength="10"
+                                autocomplete="tel"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- Password -->
+
+                        <div class="mb-3">
+
+                            <label class="form-label fw-semibold">
+                                <i class="bi bi-lock me-1"></i>
+                                Password
+                            </label>
+
+                            <div class="input-group">
+
+                                <input
+                                    type="password"
+                                    id="registerPassword"
+                                    name="password"
+                                    class="form-control form-control-lg"
+                                    placeholder="Create a password"
+                                    autocomplete="new-password"
+                                    required
+                                >
+
+                                <button
+                                    type="button"
+                                    class="btn btn-outline-secondary"
+                                    onclick="togglePassword('registerPassword', this)"
+                                    aria-label="Show password"
+                                >
+
+                                    <i class="bi bi-eye"></i>
+
+                                </button>
+
+                            </div>
+
+                            <small class="text-muted">
+                                Use a strong password for better security.
+                            </small>
+
+                        </div>
+
+
+                        <!-- Register As -->
+
+                        <div class="mb-4">
+
+                            <label class="form-label fw-semibold">
+                                <i class="bi bi-person-badge me-1"></i>
+                                Register As
+                            </label>
+
+                            <select
+                                name="role"
+                                class="form-select form-select-lg"
+                            >
+
+                                <option
+                                    value="tenant"
+                                    {% if form and form.role == "tenant" %}selected{% endif %}
+                                >
+                                    Tenant
+                                </option>
+
+                                <option
+                                    value="owner"
+                                    {% if form and form.role == "owner" %}selected{% endif %}
+                                >
+                                    Owner
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- Register Button -->
+
+                        <button
+                            type="submit"
+                            class="btn btn-success btn-lg w-100"
+                        >
+
+                            <i class="bi bi-person-plus me-2"></i>
+                            Create Account
+
+                        </button>
+
+                    </form>
+
+
+                    <hr class="my-4">
+
+
+                    <!-- Login -->
+
+                    <div class="text-center">
+
+                        <p class="text-muted mb-2">
+                            Already have an account?
+                        </p>
+
+                        <a
+                            href="/login"
+                            class="btn btn-outline-primary"
+                        >
+                            Login
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function togglePassword(id, button) {
+
+    const input = document.getElementById(id);
+    const icon = button.querySelector("i");
+
+    if (input.type === "password") {
+
+        input.type = "text";
+
+        icon.classList.replace(
+            "bi-eye",
+            "bi-eye-slash"
+        );
+
+        button.setAttribute(
+            "aria-label",
+            "Hide password"
+        );
+
+    } else {
+
+        input.type = "password";
+
+        icon.classList.replace(
+            "bi-eye-slash",
+            "bi-eye"
+        );
+
+        button.setAttribute(
+            "aria-label",
+            "Show password"
+        );
+
+    }
+
+}
+
+</script>
+
+{% endblock %}

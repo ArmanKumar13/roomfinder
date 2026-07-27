@@ -1,0 +1,469 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container py-4">
+
+    <!-- Page Header -->
+
+    <div class="text-center mb-4">
+
+        <div class="mb-3">
+            <i class="bi bi-house-add-fill text-success"
+               style="font-size: 3rem;">
+            </i>
+        </div>
+
+        <h2 class="fw-bold">
+            Add New Room
+        </h2>
+
+        <p class="text-muted">
+            Add details about your room and help tenants find your property.
+        </p>
+
+    </div>
+
+
+    <!-- Form Card -->
+
+    <div class="card border-0 shadow rounded-4">
+
+        <div class="card-body p-4 p-md-5">
+
+            <form action="/add-room"
+                  method="POST"
+                  enctype="multipart/form-data">
+
+
+                <!-- Basic Information -->
+
+                <h5 class="fw-bold mb-3">
+                    <i class="bi bi-house-door me-2"></i>
+                    Basic Information
+                </h5>
+
+                <div class="row g-3 mb-4">
+
+                    <div class="col-12">
+
+                        <label class="form-label fw-semibold">
+                            Room Title
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control form-control-lg"
+                            name="title"
+                            placeholder="Example: Spacious 1 BHK near college"
+                            required>
+
+                    </div>
+
+
+                    <div class="col-md-6">
+
+                        <label class="form-label fw-semibold">
+                            Room Type
+                        </label>
+
+                        <select
+                            class="form-select form-select-lg"
+                            name="room_type"
+                            required>
+
+                            <option value="">Select Room Type</option>
+                            <option>Single Room</option>
+                            <option>Double Room</option>
+                            <option>1 BHK</option>
+                            <option>2 BHK</option>
+                            <option>3 BHK</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="col-md-6">
+
+                        <label class="form-label fw-semibold">
+                            Monthly Rent
+                        </label>
+
+                        <div class="input-group input-group-lg">
+
+                            <span class="input-group-text">
+                                ₹
+                            </span>
+
+                            <input
+                                type="number"
+                                class="form-control"
+                                name="rent"
+                                placeholder="Monthly rent"
+                                min="0"
+                                required>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <hr class="my-4">
+
+
+                <!-- Payment & Contact -->
+
+                <h5 class="fw-bold mb-3">
+                    <i class="bi bi-cash-stack me-2"></i>
+                    Payment & Contact
+                </h5>
+
+                <div class="row g-3 mb-4">
+
+                    <div class="col-md-6">
+
+                        <label class="form-label fw-semibold">
+                            Security Deposit
+                        </label>
+
+                        <div class="input-group input-group-lg">
+
+                            <span class="input-group-text">
+                                ₹
+                            </span>
+
+                            <input
+                                type="number"
+                                class="form-control"
+                                name="deposit"
+                                placeholder="Security deposit"
+                                min="0">
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-6">
+
+                        <label class="form-label fw-semibold">
+                            Contact Number
+                        </label>
+
+                        <input
+                            type="tel"
+                            class="form-control form-control-lg"
+                            name="contact"
+                            placeholder="10-digit contact number"
+                            maxlength="10"
+                            required>
+
+                    </div>
+
+                </div>
+
+
+                <hr class="my-4">
+
+
+                <!-- Location -->
+
+                <h5 class="fw-bold mb-3">
+                    <i class="bi bi-geo-alt me-2"></i>
+                    Location
+                </h5>
+
+                <div class="row g-3 mb-4">
+
+                    <div class="col-12">
+
+                        <label class="form-label fw-semibold">
+                            Full Address
+                        </label>
+
+                        <textarea
+                            class="form-control"
+                            rows="2"
+                            name="address"
+                            placeholder="Enter complete property address"
+                            required></textarea>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <label class="form-label fw-semibold">
+                            City
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            name="city"
+                            placeholder="City"
+                            required>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <label class="form-label fw-semibold">
+                            State
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            name="state"
+                            placeholder="State"
+                            required>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <label class="form-label fw-semibold">
+                            Pincode
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            name="pincode"
+                            placeholder="6-digit pincode"
+                            maxlength="6">
+
+                    </div>
+
+                </div>
+
+
+                <hr class="my-4">
+
+
+                <!-- Facilities -->
+
+                <h5 class="fw-bold mb-3">
+                    <i class="bi bi-stars me-2"></i>
+                    Facilities
+                </h5>
+
+                <p class="text-muted small">
+                    Select all facilities available at the property.
+                </p>
+
+                <div class="row g-3 mb-4">
+
+                    <div class="col-md-3 col-6">
+                        <div class="form-check">
+                            <input
+                                class="form-check-input"
+                                type="checkbox"
+                                name="facilities"
+                                value="WiFi"
+                                id="wifi">
+                            <label class="form-check-label" for="wifi">
+                                <i class="bi bi-wifi me-1"></i>
+                                WiFi
+                            </label>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-3 col-6">
+                        <div class="form-check">
+                            <input
+                                class="form-check-input"
+                                type="checkbox"
+                                name="facilities"
+                                value="Parking"
+                                id="parking">
+                            <label class="form-check-label" for="parking">
+                                <i class="bi bi-car-front me-1"></i>
+                                Parking
+                            </label>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-3 col-6">
+                        <div class="form-check">
+                            <input
+                                class="form-check-input"
+                                type="checkbox"
+                                name="facilities"
+                                value="Kitchen"
+                                id="kitchen">
+                            <label class="form-check-label" for="kitchen">
+                                <i class="bi bi-cup-hot me-1"></i>
+                                Kitchen
+                            </label>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-3 col-6">
+                        <div class="form-check">
+                            <input
+                                class="form-check-input"
+                                type="checkbox"
+                                name="facilities"
+                                value="Attached Bathroom"
+                                id="bathroom">
+                            <label class="form-check-label" for="bathroom">
+                                <i class="bi bi-droplet me-1"></i>
+                                Attached Bathroom
+                            </label>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-3 col-6">
+                        <div class="form-check">
+                            <input
+                                class="form-check-input"
+                                type="checkbox"
+                                name="facilities"
+                                value="AC"
+                                id="ac">
+                            <label class="form-check-label" for="ac">
+                                <i class="bi bi-snow me-1"></i>
+                                AC
+                            </label>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-3 col-6">
+                        <div class="form-check">
+                            <input
+                                class="form-check-input"
+                                type="checkbox"
+                                name="facilities"
+                                value="Fan"
+                                id="fan">
+                            <label class="form-check-label" for="fan">
+                                <i class="bi bi-fan me-1"></i>
+                                Fan
+                            </label>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-3 col-6">
+                        <div class="form-check">
+                            <input
+                                class="form-check-input"
+                                type="checkbox"
+                                name="facilities"
+                                value="Balcony"
+                                id="balcony">
+                            <label class="form-check-label" for="balcony">
+                                <i class="bi bi-building me-1"></i>
+                                Balcony
+                            </label>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-3 col-6">
+                        <div class="form-check">
+                            <input
+                                class="form-check-input"
+                                type="checkbox"
+                                name="facilities"
+                                value="Washing Machine"
+                                id="washingMachine">
+                            <label class="form-check-label" for="washingMachine">
+                                <i class="bi bi-arrow-repeat me-1"></i>
+                                Washing Machine
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <hr class="my-4">
+
+
+                <!-- Description -->
+
+                <h5 class="fw-bold mb-3">
+                    <i class="bi bi-card-text me-2"></i>
+                    Description
+                </h5>
+
+                <div class="mb-4">
+
+                    <textarea
+                        class="form-control"
+                        rows="5"
+                        name="description"
+                        placeholder="Describe the room, nearby facilities, rules, etc."></textarea>
+
+                </div>
+
+
+                <!-- Images -->
+
+                <h5 class="fw-bold mb-3">
+                    <i class="bi bi-images me-2"></i>
+                    Room Images
+                </h5>
+
+                <div class="mb-4">
+
+                    <input
+                        type="file"
+                        class="form-control form-control-lg"
+                        name="images"
+                        multiple
+                        accept="image/*">
+
+                    <div class="form-text">
+                        You can select multiple images of your room.
+                    </div>
+
+                </div>
+
+
+                <!-- Buttons -->
+
+                <div class="d-flex flex-wrap gap-2 mt-4">
+
+                    <button
+                        type="submit"
+                        class="btn btn-success btn-lg px-4">
+
+                        <i class="bi bi-check-circle me-2"></i>
+                        Save Room
+
+                    </button>
+
+                    <a
+                        href="/owner"
+                        class="btn btn-outline-secondary btn-lg px-4">
+
+                        <i class="bi bi-arrow-left me-2"></i>
+                        Cancel
+
+                    </a>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

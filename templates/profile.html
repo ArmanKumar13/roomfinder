@@ -1,0 +1,210 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container py-4">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-8 col-lg-7">
+
+            <!-- Profile Header -->
+
+            <div class="text-center mb-4">
+
+                <div class="mb-3">
+                    <div
+                        class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center shadow"
+                        style="width:80px;height:80px;"
+                    >
+                        <i class="bi bi-person-fill" style="font-size:2.5rem;"></i>
+                    </div>
+                </div>
+
+                <h2 class="fw-bold mb-1">
+                    My Profile
+                </h2>
+
+                <p class="text-muted">
+                    View and manage your RoomFinder account.
+                </p>
+
+            </div>
+
+
+            <!-- Profile Card -->
+
+            <div class="card border-0 shadow rounded-4 overflow-hidden">
+
+                <div class="card-header bg-primary text-white p-4">
+
+                    <div class="d-flex align-items-center">
+
+                        <div>
+                            <h4 class="mb-1">
+                                {{ user.fullname }}
+                            </h4>
+
+                            <span class="badge bg-light text-primary">
+                                {{ user.role|capitalize }}
+                            </span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card-body p-4 p-md-5">
+
+                    <!-- Full Name -->
+
+                    <div class="d-flex align-items-center border-bottom pb-3 mb-3">
+
+                        <div class="me-3 text-primary fs-4">
+                            <i class="bi bi-person"></i>
+                        </div>
+
+                        <div>
+                            <small class="text-muted d-block">
+                                Full Name
+                            </small>
+
+                            <strong>
+                                {{ user.fullname }}
+                            </strong>
+                        </div>
+
+                    </div>
+
+
+                    <!-- Email -->
+
+                    <div class="d-flex align-items-center border-bottom pb-3 mb-3">
+
+                        <div class="me-3 text-primary fs-4">
+                            <i class="bi bi-envelope"></i>
+                        </div>
+
+                        <div>
+                            <small class="text-muted d-block">
+                                Email Address
+                            </small>
+
+                            <strong>
+                                {{ user.email }}
+                            </strong>
+                        </div>
+
+                    </div>
+
+
+                    <!-- Phone -->
+
+                    <div class="d-flex align-items-center border-bottom pb-3 mb-3">
+
+                        <div class="me-3 text-primary fs-4">
+                            <i class="bi bi-telephone"></i>
+                        </div>
+
+                        <div>
+                            <small class="text-muted d-block">
+                                Phone Number
+                            </small>
+
+                            <strong>
+                                {{ user.phone }}
+                            </strong>
+                        </div>
+
+                    </div>
+
+
+                    <!-- Role -->
+
+                    <div class="d-flex align-items-center mb-4">
+
+                        <div class="me-3 text-primary fs-4">
+                            <i class="bi bi-person-badge"></i>
+                        </div>
+
+                        <div>
+                            <small class="text-muted d-block">
+                                Account Type
+                            </small>
+
+                            <strong>
+                                {{ user.role|capitalize }}
+                            </strong>
+                        </div>
+
+                    </div>
+
+
+                    <!-- Buttons -->
+
+                    <div class="d-flex flex-wrap gap-2 justify-content-center">
+
+                        <a
+                            href="/edit-profile"
+                            class="btn btn-warning"
+                        >
+                            <i class="bi bi-pencil-square me-1"></i>
+                            Edit Profile
+                        </a>
+
+
+                        <a
+                            href="/change-password"
+                            class="btn btn-success"
+                        >
+                            <i class="bi bi-shield-lock me-1"></i>
+                            Change Password
+                        </a>
+
+
+                        {% if session.role == "owner" %}
+
+                        <a
+                            href="{{ url_for('owner') }}"
+                            class="btn btn-secondary"
+                        >
+                            <i class="bi bi-arrow-left me-1"></i>
+                            Back
+                        </a>
+
+                        {% elif session.role == "tenant" %}
+
+                        <a
+                            href="{{ url_for('tenant_dashboard') }}"
+                            class="btn btn-secondary"
+                        >
+                            <i class="bi bi-arrow-left me-1"></i>
+                            Back
+                        </a>
+
+                        {% elif session.role == "admin" %}
+
+                        <a
+                            href="{{ url_for('admin') }}"
+                            class="btn btn-secondary"
+                        >
+                            <i class="bi bi-arrow-left me-1"></i>
+                            Back
+                        </a>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

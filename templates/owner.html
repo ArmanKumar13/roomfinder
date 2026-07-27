@@ -1,0 +1,176 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+<h2>
+Welcome,
+{{ session.fullname }}
+</h2>
+
+<hr>
+
+<!-- Statistics -->
+
+<div class="row mb-4">
+
+    <!-- Total Rooms -->
+    <div class="col-md-3 mb-3">
+
+        <div class="card shadow text-center h-100">
+
+            <div class="card-body">
+
+                <h5>Total Rooms</h5>
+
+                <h2 class="text-primary">
+                    {{ total_rooms }}
+                </h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Available Rooms -->
+    <div class="col-md-3 mb-3">
+
+        <div class="card shadow text-center h-100">
+
+            <div class="card-body">
+
+                <h5>Available</h5>
+
+                <h2 class="text-success">
+                    {{ available_rooms }}
+                </h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Rented Rooms -->
+    <div class="col-md-3 mb-3">
+
+        <div class="card shadow text-center h-100">
+
+            <div class="card-body">
+
+                <h5>Rented</h5>
+
+                <h2 class="text-danger">
+                    {{ rented_rooms }}
+                </h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Saved by Users -->
+    <div class="col-md-3 mb-3">
+
+        <div class="card shadow text-center h-100">
+
+            <div class="card-body">
+
+                <h5>Saved by Users</h5>
+
+                <h2 class="text-warning">
+                    {{ total_saved }}
+                </h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- Owner Menu -->
+
+<div class="row">
+
+    <div class="col-md-4">
+
+        <div class="card shadow">
+
+            <div class="card-body">
+
+                <h4>Owner Menu</h4>
+
+                <hr>
+
+                <a href="/add-room"
+                   class="btn btn-success w-100 mb-3">
+
+                    + Add New Room
+
+                </a>
+
+                <a href="/my-rooms"
+                   class="btn btn-primary w-100 mb-3">
+
+                    My Rooms
+
+                </a>
+
+                <a href="/profile"
+                   class="btn btn-info w-100 mb-3">
+
+                    My Profile
+
+                </a>
+
+                <a href="/logout"
+                   class="btn btn-danger w-100">
+
+                    Logout
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Dashboard Information -->
+
+    <div class="col-md-8">
+
+        <div class="card shadow">
+
+            <div class="card-body">
+
+                <h3>Dashboard</h3>
+
+                <p>
+                    From here you can upload rooms,
+                    manage listings,
+                    edit prices,
+                    and delete old listings.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+{% endblock %}

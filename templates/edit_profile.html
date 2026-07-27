@@ -1,0 +1,191 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container py-4">
+
+    <!-- Page Header -->
+
+    <div class="text-center mb-4">
+
+        <div class="mb-3">
+            <i class="bi bi-person-gear text-warning"
+               style="font-size: 3rem;">
+            </i>
+        </div>
+
+        <h2 class="fw-bold">
+            Edit Profile
+        </h2>
+
+        <p class="text-muted">
+            Update your personal information.
+        </p>
+
+    </div>
+
+
+    <!-- Profile Card -->
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-8 col-lg-7">
+
+            <div class="card border-0 shadow rounded-4">
+
+                <div class="card-body p-4 p-md-5">
+
+                    <form method="POST">
+
+                        <!-- Full Name -->
+
+                        <div class="mb-4">
+
+                            <label class="form-label fw-semibold">
+                                <i class="bi bi-person me-1"></i>
+                                Full Name
+                            </label>
+
+                            <input
+                                type="text"
+                                name="fullname"
+                                class="form-control form-control-lg"
+                                value="{{ user.fullname }}"
+                                placeholder="Enter your full name"
+                                autocomplete="name"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- Email -->
+
+                        <div class="mb-4">
+
+                            <label class="form-label fw-semibold">
+                                <i class="bi bi-envelope me-1"></i>
+                                Email Address
+                            </label>
+
+                            <input
+                                type="email"
+                                name="email"
+                                class="form-control form-control-lg"
+                                value="{{ user.email }}"
+                                placeholder="Enter your email"
+                                autocomplete="email"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- Phone -->
+
+                        <div class="mb-4">
+
+                            <label class="form-label fw-semibold">
+                                <i class="bi bi-telephone me-1"></i>
+                                Phone Number
+                            </label>
+
+                            <input
+                                type="tel"
+                                name="phone"
+                                class="form-control form-control-lg"
+                                value="{{ user.phone }}"
+                                placeholder="Enter 10-digit phone number"
+                                maxlength="10"
+                                autocomplete="tel"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- Buttons -->
+
+                        <div class="d-flex flex-wrap gap-2">
+
+                            <button
+                                type="submit"
+                                class="btn btn-success btn-lg flex-grow-1"
+                            >
+
+                                <i class="bi bi-check-circle me-2"></i>
+                                Update Profile
+
+                            </button>
+
+
+                            {% if session.role == "owner" %}
+
+                            <a
+                                href="/owner"
+                                class="btn btn-outline-secondary btn-lg"
+                            >
+
+                                <i class="bi bi-x-circle me-1"></i>
+                                Cancel
+
+                            </a>
+
+                            {% elif session.role == "tenant" %}
+
+                            <a
+                                href="/tenant-dashboard"
+                                class="btn btn-outline-secondary btn-lg"
+                            >
+
+                                <i class="bi bi-x-circle me-1"></i>
+                                Cancel
+
+                            </a>
+
+                            {% elif session.role == "admin" %}
+
+                            <a
+                                href="/admin"
+                                class="btn btn-outline-secondary btn-lg"
+                            >
+
+                                <i class="bi bi-x-circle me-1"></i>
+                                Cancel
+
+                            </a>
+
+                            {% endif %}
+
+                        </div>
+
+                    </form>
+
+
+                    <!-- Security Note -->
+
+                    <div class="alert alert-light border mt-4 mb-0">
+
+                        <small class="text-muted">
+
+                            <i class="bi bi-info-circle me-1"></i>
+
+                            Your password is not changed here.
+                            Use <strong>Change Password</strong> from your
+                            profile to update it.
+
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
