@@ -27,7 +27,9 @@ app.config["MYSQL_PORT"] = int(config.MYSQL_PORT)
 app.config["MYSQL_USER"] = config.MYSQL_USER
 app.config["MYSQL_PASSWORD"] = config.MYSQL_PASSWORD
 app.config["MYSQL_DB"] = config.MYSQL_DB
-
+app.config["MYSQL_SSL"] = {
+    "ca": config.MYSQL_SSL_CA
+}
 def allowed_file(filename):
     return (
         "." in filename and
