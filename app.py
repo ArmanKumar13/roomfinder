@@ -55,8 +55,9 @@ cloudinary.config(
     secure=True
 )
 app.config["MAIL_SERVER"] = "smtp.gmail.com"
-app.config["MAIL_PORT"] = 587
-app.config["MAIL_USE_TLS"] = True
+app.config["MAIL_PORT"] = 465
+app.config["MAIL_USE_TLS"] = False
+app.config["MAIL_USE_SSL"] = True
 
 app.config["MAIL_USERNAME"] = config.MAIL_USERNAME
 app.config["MAIL_PASSWORD"] = config.MAIL_PASSWORD
@@ -722,13 +723,11 @@ def forgot_password():
             flash("Email not registered.", "danger")
             return render_template("forgot_password.html")
 
-        # Prevent repeated OTP requests within 60 seconds
         last_sent = session.get("otp_time")
         if last_sent and time.time() - last_sent < 60:
             flash("Please wait before requesting another OTP.", "warning")
             return redirect("/verify-otp")
 
-        # Clear previous reset session
         session.pop("otp_verified", None)
         session.pop("reset_otp", None)
         session.pop("otp_time", None)
@@ -761,7 +760,12 @@ Regards,
 RoomFinder Team
 """
 
-        mail.send(msg)
+        try:
+            mail.send(msg)
+        except Exception as e:
+            print("Mail send failed:", e)
+            flash("OTP could not be sent right now. Please try again later.", "danger")
+            return render_template("forgot_password.html")
 
         flash("OTP has been sent to your registered email.", "success")
         return redirect("/verify-otp")
@@ -860,7 +864,12 @@ Regards,
 RoomFinder Team
 """
 
-    mail.send(msg)
+    try:
+        mail.send(msg)
+    except Exception as e:
+        print("Mail send failed:", e)
+        flash("OTP could not be sent right now. Please try again later.", "danger")
+        return redirect("/forgot-password")
 
     flash("A new OTP has been sent to your email.", "success")
     return redirect("/verify-otp")
